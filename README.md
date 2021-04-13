@@ -1,7 +1,7 @@
 English | [简体中文](./README-zh_CN.md)
 
 # apng-handler
-📝 code snippets of decode and encode (a)png in modern browser environment 🌐. Including：
+decode and encode (a)png in modern browser environment 🌐. Including：
 
 1. （decode）get png frames from apng buffer
 2. （encode）assemble png buffers to apng buffer

@@ -1,0 +1,37 @@
+{
+  "name": "apng-handler",
+  "version": "0.1.0",
+  "description": "decode and encode (a)png in modern browser environment 🌐.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "rollup -c",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marckon/apng-handler.git"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-typescript": "^8.2.0",
+    "rollup": "^2.41.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.2.3"
+  },
+  "keywords": [
+    "apng",
+    "png",
+    "browser",
+    "image",
+    "animation",
+    "buffer"
+  ],
+  "author": "Marckon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marckon/apng-handler/issues"
+  },
+  "homepage": "https://github.com/Marckon/apng-handler#readme"
+}

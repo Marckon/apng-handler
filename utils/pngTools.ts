@@ -77,7 +77,7 @@ export function parseChunks(bytes: Uint8Array, fun: ({ type, bytes, off, length 
     type = bytes2String(bytes, off + 4, 4) as ChunkType;
 
     // should stopped
-    res = fun(type, bytes, off, length);
+    res = fun({type, bytes, off, length});
 
     off += 12 + length;
   } while (res !== false && type != "IEND" && off < bytes.length);

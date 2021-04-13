@@ -1,7 +1,7 @@
 简体中文 | [English](./README.md)
 
 # apng-handler
-📝 直接运行在浏览器环境🌐 的处理(a)png的代码片段包含：
+📝 直接运行在浏览器环境🌐 的处理(a)png的npm package，包含：
 
 1. （decode）将apng解析出png序列帧
 2. （encode）将png序列帧组装成apng 
