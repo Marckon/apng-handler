@@ -27,6 +27,29 @@ export const PNG_SIGNATURE_BYTES = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d,
  * */
 export type ChunkType = "acTL" | "fcTL" | "IDAT" | "fdAT" | "IEND" | "IHDR" | "PLTE" | "tEXt";
 
+/**
+ * validate apng file
+ */
+export function validateAPNG(bytes: Uint8Array): Promise<void> {
+  return new Promise((resolve, reject) => {
+    for (var i = 0; i < PNG_SIGNATURE_BYTES.length; i++) {
+      if (PNG_SIGNATURE_BYTES[i] != bytes[i]) {
+        return reject();
+      }
+    }
+
+    parseChunks(bytes, ({ type }) => {
+      if (type == "acTL") {
+        resolve();
+        return false;
+      }
+      return true;
+    });
+
+    reject();
+  });
+}
+
 interface CBParam {
   type: ChunkType;
   /* original data bytes */
@@ -118,7 +141,7 @@ export enum BlendOP {
   OVER,
 }
 
-interface FcTLParam {
+export interface Frame {
   /* sequence number */
   seq: number;
   /* frame width */
@@ -135,9 +158,11 @@ interface FcTLParam {
   delayD?: number;
   dispose?: DisposeOP;
   blend?: BlendOP;
+  delay?: number;
+  dataParts?: Uint8Array[];
 }
 /* 创建fcTL块 */
-export function createFcTL(param: FcTLParam) {
+export function createFcTL(param: Frame) {
   const {
     seq,
     width,
