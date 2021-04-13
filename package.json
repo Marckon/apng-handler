@@ -1,10 +1,11 @@
 {
   "name": "apng-handler",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "decode and encode (a)png in modern browser environment 🌐.",
   "main": "lib/index.js",
   "types": "lib/src/index.d.ts",
   "files": [
+    "lib",
     "dist",
     "README.md",
     "README-zh_CN.md"
