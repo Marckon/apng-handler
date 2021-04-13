@@ -11,6 +11,58 @@ We have already used a great library -- [apng-canvas](https://github.com/davidmz
 
 Additionally, I wrote a snippet of assemble apng buffer from png buffers, which runs in browser environment.
 
+## Usage
+
+> Currently this package doesn't offer enough abilities. But I still publish it to npm, in case that you want to try it out.
+
+### Install
+
+-  install as a node_module
+
+```bash
+npm install apng-handler --save
+```
+
+- use cdn 
+```html
+<script src="https://unpkg.com/apng-handler@{{version}}/dist/index.js"></script>
+```
+
+### demo
+
+```typescript
+// window.ApngHandler
+import { apngDecoder, apngAssembler } from 'apng-handler';
+
+const appendImg = (buf: ArrayBuffer) => {
+  const img = document.createElement('img');
+  img.width = 100;
+  const url = URL.createObjectURL(
+    new Blob([new Uint8Array(buf)], { type: 'image/apng' })
+  );
+  img.src = url;
+  document.body.appendChild(img);
+};
+
+const blob = apngAssembler({
+  buffers: [],// image buffers
+  width: 302,
+  height: 192,
+});
+
+blob.arrayBuffer().then((buf) => {
+  appendImg(buf);
+  apngDecoder(buf).then((blobs) => {
+    blobs.forEach((b) => {
+      b.arrayBuffer().then((_b) => {
+        appendImg(_b);
+      });
+    });
+  });
+});
+    
+```
+
 ![](./Apng-intro.png)
 
 ## More References

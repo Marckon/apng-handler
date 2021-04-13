@@ -11,6 +11,60 @@
 
 并基于此编写了**浏览器环境下**由png序列生成apng的代码片段。
 
+
+
+## Usage
+
+> 当前这个包并没有提供足够多的能力。但是我还是发到了npm上去，方便开发者尝试使用。很快，我们的能力将会更丰富。
+
+### 安装
+
+-  使用 node_module
+
+```bash
+npm install apng-handler --save
+```
+
+- 使用 cdn 
+```html
+<script src="https://unpkg.com/apng-handler@{{version}}/dist/index.js"></script>
+```
+
+### demo
+
+```typescript
+// window.ApngHandler
+import { apngDecoder, apngAssembler } from 'apng-handler';
+
+const appendImg = (buf: ArrayBuffer) => {
+  const img = document.createElement('img');
+  img.width = 100;
+  const url = URL.createObjectURL(
+    new Blob([new Uint8Array(buf)], { type: 'image/apng' })
+  );
+  img.src = url;
+  document.body.appendChild(img);
+};
+
+const blob = apngAssembler({
+  buffers: [],// image buffers
+  width: 302,
+  height: 192,
+});
+
+blob.arrayBuffer().then((buf) => {
+  appendImg(buf);
+  apngDecoder(buf).then((blobs) => {
+    blobs.forEach((b) => {
+      b.arrayBuffer().then((_b) => {
+        appendImg(_b);
+      });
+    });
+  });
+});
+    
+```
+
 ![](./Apng-intro.png)
 
 ## 学习资料
