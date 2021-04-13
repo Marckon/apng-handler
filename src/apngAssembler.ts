@@ -41,7 +41,7 @@ export function apngAssembler(params: Params) {
   });
 
   /* 2. put IHDR after PNG signature */
-  bb.push(IHDR);
+  bb.push(makeChunkBytes("IHDR", IHDR));
 
   /* 3. put acTL after IHDR */
   bb.push(createAcTL(buffers.length, playNum));

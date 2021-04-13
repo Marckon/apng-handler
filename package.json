@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "decode and encode (a)png in modern browser environment 🌐.",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "rollup -c",
